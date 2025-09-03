@@ -1,2 +1,2 @@
 # SistemaEndocrino
-O site do Sistema Endócrino foi desenvolvido para facilitar o aprendizado de forma interativa e dinâmica. Ele conta com recursos como mapa 3D do corpo humano, conteúdos explicativos, mini game educativo e atividades práticas que tornam o estudo mais envolvente e acessível.
+O site do Sistema Endócrino foi criado para tornar o aprendizado mais fácil e interativo. Com conteúdos explicativos, mini game educativo e atividades práticas, ele ajuda estudantes a compreender de forma divertida e eficiente o funcionamento das glândulas e hormônios do corpo.
