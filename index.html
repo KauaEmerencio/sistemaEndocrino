@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Endócrino </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+:root {
+ --primary:   #150dad;   /* Cor primária – geralmente usada em botões, links ou destaques principais */
+  --secondary: #000000;   /* Cor secundária – pode ser usada para textos ou detalhes */
+  --accent:    #FF6584;   /* Cor de destaque/acento – usada para chamar atenção, como em alertas ou ações */
+  --dark:      #2D3748;   /* Tom escuro – geralmente para fundos ou textos escuros */
+  --light:     #ffffff;   /* Tom claro – usado em fundos ou textos claros */
+  --gray:      #080a0c;   /* Cinza – para ícones, bordas, textos secundários */
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+
+
+            
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;   
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.4);
+            background-color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            max-width: 700px;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-20px); }
+            100% { transform: translateY(-50%) translateX(0); }
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: var(--gray);
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Glands Section */
+        .glands {
+            padding: 120px 0;
+            background-color: var(--light);
+        }
+        
+        .glands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .gland-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .gland-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .gland-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gland-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .gland-card:hover .gland-img {
+            transform: scale(1.1);
+        }
+        
+        .gland-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .gland-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gland-content {
+            padding: 30px;
+        }
+        
+        .gland-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .gland-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .gland-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .gland-link:hover {
+            color: var(--secondary);
+        }
+        
+        .gland-link i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+        
+        .gland-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Hormones Section */
+        .hormones {
+            padding: 120px 0;
+            background-color: var(--white);
+        }
+        
+        .hormones-container {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hormones-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .hormones-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hormones-list {
+            flex: 1;
+        }
+        
+        .hormone-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            background-color: var(--light);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .hormone-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hormone-item h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hormone-item h4 i {
+            color: var(--primary);
+        }
+        
+        .hormone-item p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+        
+        /* Quiz Section */
+        .quiz {
+            padding: 120px 0;
+            background-color: var(--light);
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .quiz-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .quiz-desc {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 17px;
+        }
+        
+        .quiz-question {
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: rgba(108, 99, 255, 0.05);
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+        
+        .quiz-question:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .quiz-question h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: var(--white);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+        }
+        
+        .quiz-option:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .quiz-option input {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .quiz-option label {
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .quiz-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 40px auto 0;
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .quiz-submit:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.4);
+        }
+        
+        .quiz-results {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgba(108, 99, 255, 0.05);
+            text-align: center;
+            display: none;
+        }
+        
+        .quiz-results h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .quiz-results p {
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        
+        .correct {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #F44336;
+            font-weight: 600;
+        }
+        
+        .quiz-score {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 15px;
+            color: var(--secondary);
+        }
+    
+        /* Systems Section */
+        .systems {
+            padding: 120px 0;
+            background-color: var(--white);
+        }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .system-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: var(--transition);
+            opacity: 0;
+        }
+        
+        .system-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .system-card:hover::before {
+            opacity: 1;
+        }
+        
+        .system-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 30px;
+        }
+        
+        .system-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .system-card p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .system-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .system-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-col p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 50px;
+            }
+            
+            .about-content, .hormones-container {
+                flex-direction: column;
+            }
+            
+            .about-image, .hormones-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+            
+            .hero-image {
+                width: 40%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                padding-top: 120px;
+                height: auto;
+                min-height: auto;
+                padding-bottom: 80px;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                max-width: 500px;
+                margin: 40px auto 0;
+                transform: none;
+                top: auto;
+                right: auto;
+                animation: float-mobile 8s ease-in-out infinite;
+            }
+            
+            @keyframes float-mobile {
+                0% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+                100% { transform: translateY(0); }
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .quiz-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                /* Estilo da Avaliação no Footer */
+.star-rating {
+  margin: 15px 0;
+}
+
+.star {
+  font-size: 28px;
+  color: #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 2px;
+}
+
+.star:hover,
+.star.active {
+  color: #FFD700;
+  transform: scale(1.2);
+}
+
+#rating-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<!-- Botão de Feedback Flutuante -->
+<div id="feedback-btn" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <button onclick="openFeedback()" style="background: var(--primary); color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+  </div>
+  
+  <!-- Modal de Feedback (escondido inicialmente) -->
+  <div id="feedback-modal" style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; background: white; border-radius: 10px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 1000;">
+    <h3 style="margin-bottom: 15px;">Deixe seu feedback!</h3>
+    <textarea id="feedback-text" placeholder="O que você achou do site?" style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: none;"></textarea>
+    <button onclick="submitFeedback()" style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">Enviar</button>
+    <button onclick="closeFeedback()" style="background: transparent; border: none; color: var(--gray); margin-left: 10px; cursor: pointer;">Cancelar</button>
+  </div>
+  
+  <script>
+    function openFeedback() {
+      document.getElementById('feedback-modal').style.display = 'block';
+    }
+    function closeFeedback() {
+      document.getElementById('feedback-modal').style.display = 'none';
+    }
+    function submitFeedback() {
+      const feedback = document.getElementById('feedback-text').value;
+      if (feedback.trim() === '') {
+        alert('Por favor, digite seu feedback!');
+        return;
+      }
+      alert('Obrigado pelo seu feedback! ♥');
+      console.log('Feedback recebido:', feedback); // Você pode substituir por uma chamada AJAX para salvar no servidor
+      closeFeedback();
+    }
+    
+  </script>
+<body>
+    <header id="header">
+        <div class="footer-col">
+            <div id="rating-container" style="display: none; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+              <h3>Ajude a melhorar nosso site!</h3>
+              <p>Você chegou ao final. Que tal avaliar sua experiência?</p>
+              
+              <div class="star-rating">
+                <span class="star" onclick="rate(1)">★</span>
+                <span class="star" onclick="rate(2)">★</span>
+                <span class="star" onclick="rate(3)">★</span>
+                <span class="star" onclick="rate(4)">★</span>
+                <span class="star" onclick="rate(5)">★</span>
+              </div>
+              
+              <p id="rating-thanks" style="display: none; color: var(--accent); font-weight: 600;">
+                Obrigado pela avaliação! ♥
+              </p>
+            </div>
+          </div>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <span class="logo-icon">SE</span>
+                    <span>Sistema Endócrino</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#about" class="active">O que é</a>
+                    <a href="#glands">Glândulas</a>
+                    <a href="#hormones">Hormônios</a>
+                    <a href="#quiz">Quiz</a>
+                    <a href="#systems">Outros Sistemas</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Explore o Sistema Endócrino</h1>
+                <p>Descubra o incrível sistema regulador do corpo humano que controla desde o crescimento até o metabolismo através de mensageiros químicos chamados hormônios.</p>
+                <div class="btn-group">
+                    <a href="#about" class="btn">Começar Exploração</a>
+                    <a href="#quiz" class="btn btn-outline">Teste seus Conhecimentos</a>
+                </div>
+            </div>
+          
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Sistema Endócrino</h2>
+                <p>O sistema de comunicação química do corpo humano que regula praticamente todas as funções fisiológicas</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>O Maestro do Corpo Humano</h3>
+                    <p>O sistema endócrino é uma rede complexa de glândulas que produzem e liberam hormônios diretamente na corrente sanguínea. Esses hormônios atuam como mensageiros químicos, regulando diversas funções do organismo.</p>
+                    <p>Diferente do sistema nervoso que envia mensagens rápidas através de impulsos elétricos, o sistema endócrino age de forma mais lenta, porém com efeitos mais duradouros.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Integração com o Sistema Nervoso</h4>
+                                <p>O hipotálamo serve como ponte entre os sistemas nervoso e endócrino, coordenando suas atividades.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Manutenção da Homeostase</h4>
+                                <p>Regula o equilíbrio interno do corpo, como temperatura, níveis de glicose e concentração de sais.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Controle do Metabolismo</h4>
+                                <p>Hormônios como os da tireoide regulam a velocidade das reações químicas no organismo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://imgs.search.brave.com/xA-u463756vkHzGbpEGGh-JltTgFPoNhNSgTlh3rT10/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zNS5z/dGF0aWMuYnJhc2ls/ZXNjb2xhLnVvbC5j/b20uYnIvYmUvMjAy/MC8wNC9zaXN0ZW1h/LWVuZG9jcmluby5q/cGc" alt="Sistema Endócrino">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="glands" class="glands">
+        <div class="container">
+            <div class="section-title">
+                <h2>Glândulas Endócrinas</h2>
+                <p>Os órgãos especializados na produção e liberação de hormônios na corrente sanguínea</p>
+            </div>
+            <div class="glands-grid">
+                <div class="gland-card">
+                    <div class="gland-img-container">
+                        <img src="https://imgs.search.brave.com/6FnhwtYq9u1seXbnzPfUOTHlQyUaBirzJo-Pih5nO4E/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuYmlvbG9naWFu/ZXQuY29tL2NvbnRl/dWRvL2ltYWdlcy9v/LWhpcG90YWxhbW8t/cmVnaWFvLWRpZW5j/ZWZhbG8tcmVzcG9u/c2F2ZWwtcG9yLW1h/bnRlci1ob21lb3N0/YXNlLW9yZ2FuaXNt/by01OTVmN2I4ZTJi/YjY0LmpwZw" alt="Hipotálamo" class="gland-img">
+                    </div>
+                    <div class="gland-content">
+                        <h3>Hipotálamo</h3>
+                        <p>Localizado no cérebro, conecta o sistema nervoso ao endócrino através da hipófise. Produz hormônios que regulam funções vitais como temperatura, fome e sede.</p>
+                        <a href="https://youtu.be/Hk-zViTxUqE?si=EujCw43tRgauCwFu" class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="gland-card">
+                    <div class="gland-img-container">
+                        <img src="https://imgs.search.brave.com/6e5q1s73_60sAv0xUQGmiE18dz-h0tWULj3rnyFvzl4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9taWxl/bmFtaWd1aXRhLmNv/bS5ici93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMy8wNi9QQVRP/TE9HSUEtRE9FTkNB/Uy1EQS1ISVBPRklT/RS5qcGc" alt="Hipófise" class="gland-img">
+                    </div>
+                    <div class="gland-content">
+                        <h3>Hipófise</h3>
+                        <p>Conhecida como "glândula mestra", controla outras glândulas endócrinas. Produz hormônios como o GH (hormônio do crescimento) e a prolactina.</p>
+                        <a href="https://youtu.be/zgwjdlU54Os?si=I0ZQSKQJT15mZuTq" class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="gland-card">
+                    <div class="gland-img-container">
+                        <img src="https://imgs.search.brave.com/Uuv2JTCB9s3HcY3ILBqxYaRTWPlLZPxNb-sSxF3tFuU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZWxl/bWVkaWNpbmFtb3Jz/Y2guY29tLmJyL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIxLzA5/L0RFU1RBUVVFLVF1/YWlzLXNhby1vcy1z/aW50b21hcy1kZS1w/cm9ibGVtYXMtbmEt/dGlyZW9pZGUtZS1x/dWFuZG8tYnVzY2Fy/LWFqdWRhLmpwZw" alt="Tireoide" class="gland-img">
+                    </div>
+                    <div class="gland-content">
+                        <h3>Tireoide</h3>
+                        <p>Produz os hormônios T3 e T4 que regulam o metabolismo, e a calcitonina que controla os níveis de cálcio no sangue.</p>
+                        <a href="https://youtu.be/ZLX3UR9Irlc?si=Q8Im4KCI7uLf997U" class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="gland-card">
+                    <div class="gland-img-container">
+                        <img src="https://imgs.search.brave.com/EXi6j_b2O2s6samwuk_4Ot7rg9WIiw_qSLHbOiQqrBM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudG9kYW1hdGVy/aWEuY29tLmJyL3Vw/bG9hZC9sby9jYS9s/b2NhbGl6YWNhb3N1/cHJhcnJlbmFpcy1j/a2UuanBn" alt="Suprarrenais" class="gland-img">
+                    </div>
+                    <div class="gland-content">
+                        <h3>Suprarrenais</h3>
+                        <p>Localizadas sobre os rins, produzem adrenalina (resposta ao estresse) e cortisol (metabolismo), além de hormônios sexuais.</p>
+                        <a href="https://www.youtube.com/watch?v=6bhsEY_vy5I&pp=ygUMc3VwcmFycmVuYWlz" class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="gland-card">
+                    <div class="gland-img-container">
+                        <img src="https://imgs.search.brave.com/P4FgfUGgmikRN28xSera0jTnR2aad-ET2tFE_7JvJCk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wMi50/cnJzZi5jb20vaW1h/Z2UvZmdldC9jZi83/NzQvMC9pbWFnZXMu/dGVycmEuY29tLzIw/MjIvMDkvMTMvNTk5/MDg1OTItbWF0ZXJp/YXBhbmNyZWFzLXNj/YWxlZC5qcGc" alt="Pâncreas" class="gland-img">
+                    </div>
+                    <div class="gland-content">
+                        <h3>Pâncreas</h3>
+                        <p>Glândula mista que produz insulina (reduz glicose) e glucagon (aumenta glicose). Sua porção endócrina são os ilhéus de Langerhans.</p>
+                        <a href="https://www.youtube.com/watch?v=-SqlIkO4pgs&pp=ygUJUMOibmNyZWFz0gcJCY0JAYcqIYzv" class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="gland-card">
+                    <div class="gland-img-container">
+                        <img src="https://imgs.search.brave.com/Zu_m2JZFf-N5yyi02GXQnMxT1WRX7MKEY1OqORuGW34/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudG9kYW1hdGVy/aWEuY29tLmJyL3Vw/bG9hZC9vdi9hci9v/dmFyaW9taWNyb3Bv/bGljaXN0aWNvLWNr/ZS5qcGc" alt="Gônadas" class="gland-img">
+                    </div>
+                    <div class="gland-content">
+                        <h3>Ovários</h3>
+                        <p>Produzem hormônios sexuais: estrogênio e progesterona, essenciais para reprodução e características sexuais.</p>
+                        <a href="https://youtu.be/af5SZkRP7qY?si=DcCUcPCZPnVayz6A class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="gland-content">
+                         <img src="https://imgs.search.brave.com/Nt6V0VRrGC9Uw0WTbvaK1F1QEtqOvU4A9ulRpAI8WR0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy80/LzRkL0dyYXkxMTQ4/LnBuZw" alt="Gônadas" class="gland-img">
+                        <h3>Testículos</h3>
+                        <p>Os testículos são duas estruturas de forma oval, com cerca de 3 cm de diâmetro e 4 cm de comprimento, que constituem o sistema reprodutor masculino. </p>
+                        <a href="https://youtu.be/C5fpuEWKrdc?si=iaKwA4NX4wdmAJpu" class="gland-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hormones" class="hormones">
+        <div class="container">
+            <div class="section-title">
+                <h2>Principais Hormônios</h2>
+                <p>Os mensageiros químicos que regulam as funções do organismo</p>
+            </div>
+            <div class="hormones-container">
+                <div class="hormones-image">
+                    <img src="https://imgs.search.brave.com/27SbSVRgHhFzR3enHiUNfS_VVm0n2uGI5t3t8AlvzYQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmV0b3Jlcy1ncmF0/aXMvZWxlbWVudG9z/LWRlLWhvcm1vbmFz/LWRlc2VuaGFkb3Mt/YS1tYW9fMjMtMjE1/MTA4OTM2Mi5qcGc_/c2VtdD1haXNfaHli/cmlk" alt="Hormônios">
+                </div>
+                <div class="hormones-list">
+                    <div class="hormone-item">
+                        <h4><i class="fas fa-seedling"></i> Hormônio do Crescimento (GH)</h4>
+                        <p>Produzido pela hipófise, estimula o crescimento de tecidos e ossos. Fundamental durante a infância e adolescência.</p>
+                    </div>
+                    
+                    <div class="hormone-item">
+                        <h4><i class="fas fa-bolt"></i> Adrenalina (Epinefrina)</h4>
+                        <p>Produzido pelas suprarrenais, prepara o corpo para situações de estresse (luta ou fuga), aumentando frequência cardíaca e pressão arterial.</p>
+                    </div>
+                    
+                    <div class="hormone-item">
+                        <h4><i class="fas fa-fire"></i> Insulina</h4>
+                        <p>Produzido pelo pâncreas, permite a entrada de glicose nas células, reduzindo sua concentração no sangue.</p>
+                    </div>
+                    
+                    <div class="hormone-item">
+                        <h4><i class="fas fa-fire"></i> Tiroxina (T4)</h4>
+                        <p>Produzido pela tireoide, regula o metabolismo basal, influenciando no gasto energético e temperatura corporal.</p>
+                    </div>
+                    
+                    <div class="hormone-item">
+                        <h4><i class="fas fa-heart"></i> Ocitocina</h4>
+                        <p>Produzido pelo hipotálamo e liberado pela hipófise, atua no parto (contrações uterinas) e no vínculo emocional (amor materno, relacionamentos).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="quiz" class="quiz">
+  <div class="container">
+    <div class="quiz-container" id="quizContainer">
+      <!-- O conteúdo será gerado dinamicamente aqui -->
+    </div>
+  </div>
+</section>
+
+<script>
+// Banco ampliado com 40 perguntas sobre o Sistema Endócrino
+const questionBank = [
+  {
+    question: "Qual glândula é conhecida como 'glândula mestra' do sistema endócrino?",
+    options: ["a) Tireoide", "b) Hipófise", "c) Suprarrenal", "d) Pâncreas"],
+    answer: "b",
+    explanation: "A hipófise é chamada de glândula mestra porque regula o funcionamento de várias outras glândulas endócrinas."
+  },
+  {
+    question: "Qual hormônio é produzido pelas células beta do pâncreas?",
+    options: ["a) Glucagon", "b) Insulina", "c) Adrenalina", "d) Tiroxina"],
+    answer: "b",
+    explanation: "As células beta das ilhotas pancreáticas produzem insulina, que reduz os níveis de glicose no sangue."
+  },
+  {
+    question: "O hormônio do crescimento (GH) é produzido por qual parte da hipófise?",
+    options: ["a) Neuro-hipófise", "b) Adeno-hipófise", "c) Hipotálamo", "d) Pars intermedia"],
+    answer: "b",
+    explanation: "O GH é produzido pela adeno-hipófise (lobo anterior da hipófise)."
+  },
+  {
+    question: "Qual destes hormônios é produzido pela glândula pineal?",
+    options: ["a) Melatonina", "b) Serotonina", "c) Dopamina", "d) Cortisol"],
+    answer: "a",
+    explanation: "A glândula pineal produz melatonina, que regula os ciclos circadianos e o sono."
+  },
+  {
+    question: "Qual hormônio é responsável por regular o metabolismo do cálcio no organismo?",
+    options: ["a) Insulina", "b) Paratormônio", "c) Adrenalina", "d) Prolactina"],
+    answer: "b",
+    explanation: "O paratormônio, produzido pelas paratireoides, regula os níveis de cálcio no sangue."
+  },
+  {
+    question: "O hipotálamo está diretamente conectado a qual glândula endócrina?",
+    options: ["a) Tireoide", "b) Hipófise", "c) Suprarrenal", "d) Pâncreas"],
+    answer: "b",
+    explanation: "O hipotálamo está conectado à hipófise através do pedúnculo hipofisário."
+  },
+  {
+    question: "Qual destes hormônios é produzido pela medula das glândulas suprarrenais?",
+    options: ["a) Cortisol", "b) Aldosterona", "c) Adrenalina", "d) Progesterona"],
+    answer: "c",
+    explanation: "A medula suprarrenal produz adrenalina (epinefrina) e noradrenalina."
+  },
+  {
+    question: "O hormônio antidiurético (ADH) é produzido por:",
+    options: ["a) Pâncreas", "b) Hipotálamo", "c) Tireoide", "d) Paratireoides"],
+    answer: "b",
+    explanation: "O ADH é produzido no hipotálamo e armazenado/liberado pela neuro-hipófise."
+  },
+  {
+    question: "Qual doença está associada à deficiência de produção de insulina?",
+    options: ["a) Diabetes mellitus tipo 1", "b) Diabetes insipidus", "c) Hipertireoidismo", "d) Hipopituitarismo"],
+    answer: "a",
+    explanation: "O diabetes mellitus tipo 1 ocorre por destruição das células beta pancreáticas que produzem insulina."
+  },
+  {
+    question: "Qual hormônio estimula a produção de leite nas glândulas mamárias?",
+    options: ["a) Progesterona", "b) Prolactina", "c) Oxitocina", "d) Estrogênio"],
+    answer: "b",
+    explanation: "A prolactina, produzida pela adeno-hipófise, estimula a produção de leite."
+  },
+  {
+    question: "O hormônio T4 (tiroxina) é produzido por:",
+    options: ["a) Pâncreas", "b) Paratireoides", "c) Tireoide", "d) Hipotálamo"],
+    answer: "c",
+    explanation: "A tireoide produz os hormônios T3 (triiodotironina) e T4 (tiroxina)."
+  },
+  {
+    question: "Qual destes hormônios é responsável pelo desenvolvimento das características sexuais masculinas?",
+    options: ["a) Estrogênio", "b) Progesterona", "c) Testosterona", "d) Prolactina"],
+    answer: "c",
+    explanation: "A testosterona, produzida pelos testículos, é o principal hormônio sexual masculino."
+  },
+  {
+    question: "O cortisol é produzido por qual parte da glândula suprarrenal?",
+    options: ["a) Medula", "b) Zona glomerulosa", "c) Zona fasciculada", "d) Zona reticular"],
+    answer: "c",
+    explanation: "O cortisol é produzido na zona fasciculada do córtex suprarrenal."
+  },
+  {
+    question: "Qual hormônio é responsável pela contração uterina durante o parto?",
+    options: ["a) Prolactina", "b) Estrogênio", "c) Oxitocina", "d) Progesterona"],
+    answer: "c",
+    explanation: "A oxitocina estimula as contrações uterinas durante o parto e a ejeção do leite."
+  },
+  {
+    question: "A calcitonina, que reduz os níveis de cálcio no sangue, é produzida por:",
+    options: ["a) Paratireoides", "b) Células C da tireoide", "c) Pâncreas", "d) Suprarrenais"],
+    answer: "b",
+    explanation: "As células C ou parafoliculares da tireoide produzem calcitonina."
+  },
+  {
+    question: "Qual glândula produz o hormônio que regula o ritmo circadiano?",
+    options: ["a) Hipófise", "b) Pineal", "c) Hipotálamo", "d) Tireoide"],
+    answer: "b",
+    explanation: "A glândula pineal produz melatonina, que regula o ciclo sono-vigília."
+  },
+  {
+    question: "O hormônio FSH (hormônio folículo-estimulante) atua principalmente sobre:",
+    options: ["a) Tireoide", "b) Gônadas", "c) Pâncreas", "d) Suprarrenais"],
+    answer: "b",
+    explanation: "O FSH estimula a maturação dos folículos ovarianos e a espermatogênese."
+  },
+  {
+    question: "Qual destes hormônios é produzido pelo hipotálamo e armazenado na neuro-hipófise?",
+    options: ["a) Prolactina", "b) TSH", "c) ADH", "d) ACTH"],
+    answer: "c",
+    explanation: "O ADH (hormônio antidiurético) e a ocitocina são produzidos no hipotálamo e armazenados na neuro-hipófise."
+  },
+  {
+    question: "O hormônio que estimula a produção de cortisol pelas suprarrenais é:",
+    options: ["a) ACTH", "b) TSH", "c) FSH", "d) LH"],
+    answer: "a",
+    explanation: "O ACTH (hormônio adrenocorticotrófico) estimula o córtex suprarrenal a produzir cortisol."
+  },
+  {
+    question: "Qual destas condições está associada ao excesso de produção de GH (hormônio do crescimento) na idade adulta?",
+    options: ["a) Gigantismo", "b) Nanismo", "c) Acromegalia", "d) Cretinismo"],
+    answer: "c",
+    explanation: "O excesso de GH na idade adulta causa acromegalia, com crescimento de mãos, pés e ossos faciais."
+  },
+  {
+    question: "Qual hormônio é responsável pela retenção de sódio e água nos rins?",
+    options: ["a) Aldosterona", "b) Insulina", "c) Glucagon", "d) Paratormônio"],
+    answer: "a",
+    explanation: "A aldosterona, produzida pelo córtex suprarrenal, promove a retenção de sódio e água."
+  },
+  {
+    question: "O hormônio TSH é produzido por qual glândula?",
+    options: ["a) Tireoide", "b) Hipófise", "c) Hipotálamo", "d) Pâncreas"],
+    answer: "b",
+    explanation: "O TSH (hormônio estimulante da tireoide) é produzido pela adeno-hipófise."
+  },
+  {
+    question: "Qual destes hormônios é um importante regulador do ciclo menstrual?",
+    options: ["a) Testosterona", "b) Progesterona", "c) Tiroxina", "d) Adrenalina"],
+    answer: "b",
+    explanation: "A progesterona prepara o endométrio para a possível implantação do óvulo fertilizado."
+  },
+  {
+    question: "A deficiência de iodo na dieta pode levar a problemas em qual glândula?",
+    options: ["a) Pâncreas", "b) Tireoide", "c) Suprarrenal", "d) Paratireoide"],
+    answer: "b",
+    explanation: "O iodo é essencial para a produção dos hormônios tireoidianos T3 e T4."
+  },
+  {
+    question: "Qual hormônio é produzido pelas células alfa do pâncreas?",
+    options: ["a) Insulina", "b) Glucagon", "c) Somatostatina", "d) Pancreozimina"],
+    answer: "b",
+    explanation: "As células alfa das ilhotas pancreáticas produzem glucagon, que aumenta a glicose no sangue."
+  },
+  {
+    question: "O hormônio LH (hormônio luteinizante) tem qual função principal?",
+    options: ["a) Estimular a ovulação", "b) Reduzir a glicose no sangue", "c) Aumentar o metabolismo", "d) Regular o cálcio"],
+    answer: "a",
+    explanation: "O LH induz a ovulação nas mulheres e a produção de testosterona nos homens."
+  },
+  {
+    question: "Qual destas glândulas é considerada neuroendócrina?",
+    options: ["a) Pâncreas", "b) Hipotálamo", "c) Tireoide", "d) Paratireoide"],
+    answer: "b",
+    explanation: "O hipotálamo é uma glândula neuroendócrina que liga o sistema nervoso ao endócrino."
+  },
+  {
+    question: "O hormônio somatostatina é produzido por qual destas estruturas?",
+    options: ["a) Pâncreas", "b) Hipotálamo", "c) Intestino", "d) Todas as anteriores"],
+    answer: "d",
+    explanation: "A somatostatina é produzida pelo pâncreas, hipotálamo e trato gastrointestinal."
+  },
+  {
+    question: "Qual hormônio é responsável pelo desenvolvimento das características sexuais femininas?",
+    options: ["a) Testosterona", "b) Estrogênio", "c) Progesterona", "d) Prolactina"],
+    answer: "b",
+    explanation: "O estrogênio promove o desenvolvimento dos caracteres sexuais secundários femininos."
+  },
+  {
+    question: "O que ocorre quando há deficiência de ADH (hormônio antidiurético)?",
+    options: ["a) Diabetes mellitus", "b) Diabetes insipidus", "c) Hipertireoidismo", "d) Hipoglicemia"],
+    answer: "b",
+    explanation: "A deficiência de ADH causa diabetes insipidus, com produção excessiva de urina diluída."
+  },
+  {
+    question: "Qual destes hormônios é um glicocorticoide?",
+    options: ["a) Insulina", "b) Cortisol", "c) Tiroxina", "d) Aldosterona"],
+    answer: "b",
+    explanation: "O cortisol é o principal glicocorticoide, envolvido na resposta ao estresse e metabolismo."
+  },
+  {
+    question: "O hormônio PTH (paratormônio) atua principalmente sobre qual órgão?",
+    options: ["a) Fígado", "b) Rins", "c) Ossos", "d) B e C estão corretas"],
+    answer: "d",
+    explanation: "O PTH atua nos ossos (liberando cálcio) e rins (reduzindo excreção de cálcio)."
+  },
+  {
+    question: "Qual destes hormônios é produzido pelo corpo lúteo?",
+    options: ["a) Estrogênio", "b) Progesterona", "c) FSH", "d) LH"],
+    answer: "b",
+    explanation: "O corpo lúteo produz principalmente progesterona para manter a gravidez inicial."
+  },
+  {
+    question: "O que a tireoide necessita para produzir seus hormônios?",
+    options: ["a) Ferro", "b) Iodo", "c) Cálcio", "d) Sódio"],
+    answer: "b",
+    explanation: "A tireoide utiliza iodo para sintetizar os hormônios T3 e T4."
+  },
+  {
+    question: "Qual hormônio é secretado em resposta ao estresse agudo?",
+    options: ["a) Insulina", "b) Adrenalina", "c) Prolactina", "d) Tiroxina"],
+    answer: "b",
+    explanation: "A adrenalina é liberada pela medula suprarrenal em situações de estresse ('luta ou fuga')."
+  },
+  {
+    question: "Qual destes é um efeito do glucagon?",
+    options: ["a) Reduzir a glicose no sangue", "b) Aumentar a glicose no sangue", "c) Aumentar a absorção de glicose", "d) Diminuir a glicogenólise"],
+    answer: "b",
+    explanation: "O glucagon estimula a glicogenólise e gluconeogênese, aumentando a glicose sanguínea."
+  },
+  {
+    question: "O que caracteriza a doença de Addison?",
+    options: ["a) Hiperfunção adrenal", "b) Hipofunção adrenal", "c) Hiperfunção tireoidiana", "d) Hipofunção pancreática"],
+    answer: "b",
+    explanation: "A doença de Addison é causada por insuficiência do córtex suprarrenal."
+  },
+  {
+    question: "Qual hormônio é produzido pela placenta durante a gravidez?",
+    options: ["a) Progesterona", "b) hCG", "c) Estrogênio", "d) Todos os anteriores"],
+    answer: "d",
+    explanation: "A placenta produz hCG, progesterona e estrogênio durante a gravidez."
+  },
+  {
+    question: "O que ocorre na síndrome de Cushing?",
+    options: ["a) Deficiência de cortisol", "b) Excesso de cortisol", "c) Deficiência de insulina", "d) Excesso de GH"],
+    answer: "b",
+    explanation: "A síndrome de Cushing resulta de níveis elevados de cortisol por tempo prolongado."
+  }
+];
+
+// Variáveis de controle
+let currentQuestions = [];
+let currentScore = 0;
+let usedQuestionIndices = [];
+
+// Seleciona 5 perguntas aleatórias não repetidas recentemente
+function selectRandomQuestions() {
+  // Filtra perguntas que não foram usadas recentemente
+  const availableQuestions = questionBank.filter((_, index) => !usedQuestionIndices.includes(index));
+  
+  // Se já usou muitas, reseta o controle
+  if (availableQuestions.length < 5) {
+    usedQuestionIndices = [];
+  }
+  
+  // Embaralha as perguntas disponíveis e seleciona 5
+  const shuffled = [...availableQuestions].sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 5);
+  
+  // Atualiza as perguntas atuais e os índices usados
+  currentQuestions = selected;
+  selected.forEach(q => {
+    const index = questionBank.findIndex(item => item.question === q.question);
+    usedQuestionIndices.push(index);
+  });
+  
+  renderQuestions();
+}
+
+// Exibe as perguntas na página
+function renderQuestions() {
+  const quizContainer = document.getElementById('quizContainer');
+  let questionsHTML = `
+    <h2 class="quiz-title">Quiz: Sistema Endócrino</h2>
+    <p class="quiz-desc">Teste seus conhecimentos sobre o sistema endócrino:</p>
+  `;
+
+  currentQuestions.forEach((q, index) => {
+    questionsHTML += `
+      <div class="quiz-question">
+        <h3>${index + 1}. ${q.question}</h3>
+        <div class="quiz-options">
+          ${q.options.map(opt => `
+            <label class="quiz-option">
+              <input type="radio" name="q${index}" value="${opt.charAt(0)}">
+              <span class="option-text">${opt}</span>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  });
+
+  questionsHTML += `
+    <div class="quiz-actions">
+      <button class="quiz-submit" id="submitQuiz">Enviar Respostas</button>
+      <button class="quiz-submit" id="newQuestionsBtn">
+        <i class="fas fa-sync-alt"></i> Novas Perguntas
+      </button>
+    </div>
+    <div class="quiz-results" id="quizResults"></div>
+  `;
+
+  quizContainer.innerHTML = questionsHTML;
+
+  // Adiciona os event listeners
+  document.getElementById('submitQuiz').addEventListener('click', checkAnswers);
+  document.getElementById('newQuestionsBtn').addEventListener('click', selectRandomQuestions);
+}
+
+// Verifica as respostas
+function checkAnswers() {
+  let score = 0;
+  const results = [];
+  
+  currentQuestions.forEach((q, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected && selected.value === q.answer) {
+      score++;
+      results.push(`
+        <div class="result-item correct">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Pergunta ${index + 1}:</strong> Correta!
+            <div class="explanation">${q.explanation}</div>
+          </div>
+        </div>
+      `);
+    } else {
+      results.push(`
+        <div class="result-item incorrect">
+          <i class="fas fa-times-circle"></i>
+          <div>
+            <strong>Pergunta ${index + 1}:</strong> Incorreta. A resposta correta é <strong>${q.answer.toUpperCase()}</strong>.
+            <div class="explanation">${q.explanation}</div>
+          </div>
+        </div>
+      `);
+    }
+  });
+
+  currentScore = score;
+  
+  document.getElementById('quizResults').innerHTML = `
+    <h4>Resultado: ${score}/5 acertos</h4>
+    <div class="results-container">
+      ${results.join('')}
+    </div>
+    <div class="quiz-score">Pontuação atual: ${currentScore}</div>
+  `;
+  document.getElementById('quizResults').style.display = 'block';
+  document.getElementById('quizResults').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Inicia o quiz quando a página carrega
+window.addEventListener('DOMContentLoaded', selectRandomQuestions);
+</script>
+
+<style>
+/* Estilos adicionais para o quiz */
+.quiz-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.quiz-submit {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quiz-submit:hover {
+  background: var(--primary-dark);
+   color: rgb(0, 0, 0) !important;
+}
+
+#newQuestionsBtn {
+  background-color: var(--primary) !important;
+  color: rgb(246, 249, 253) !important;
+}
+
+#newQuestionsBtn:hover {
+  background-color: var(--primary-dark) !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+.result-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.result-item.correct {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left: 4px solid #4CAF50;
+}
+
+.result-item.incorrect {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left: 4px solid #F44336;
+}
+
+.result-item i {
+  font-size: 24px;
+  margin-top: 2px;
+}
+
+.result-item.correct i {
+  color: #4CAF50;
+}
+
+.result-item.incorrect i {
+  color: #F44336;
+}
+
+.explanation {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.results-container {
+  margin-top: 20px;
+}
+
+.quiz-score {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15px;
+  color: var(--primary);
+}
+</style>
+</style>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="systems" class="systems">
+        <div class="container">
+            <div class="section-title">
+                <h2>Outros Sistemas do Corpo Humano</h2>
+                <p>O sistema endócrino trabalha em conjunto com todos esses sistemas</p>
+            </div>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Sistema Nervoso</h3>
+                    <p>Coordenação rápida através de impulsos elétricos. O hipotálamo integra ambos os sistemas.</p>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Sistema Cardiovascular</h3>
+                    <p>Transporta hormônios pelo corpo. A adrenalina influencia diretamente o coração e vasos.</p>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Sistema Digestório</h3>
+                    <p>Produz hormônios intestinais como a grelina (fome) e colecistocinina (saciedade).</p>
+ 
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3>Sistema Respiratório</h3>
+                    <p>Os hormônios tireoidianos influenciam a frequência respiratória e consumo de oxigênio.</p>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Sistema Urinário</h3>
+                    <p>O hormônio antidiurético (ADH) regula a reabsorção de água nos rins.</p>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <h3>Sistema Reprodutor</h3>
+                    <p>Controlado por hormônios como estrogênio, progesterona e testosterona.</p>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Sistema Esquelético</h3>
+                    <p>O hormônio paratireoideo e a calcitonina regulam os níveis de cálcio nos ossos.</p>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>Sistema Muscular</h3>
+                    <p>A testosterona promove o crescimento muscular e o GH estimula a recuperação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Sistema Endócrino</h3>
+                    <p>Um guia completo sobre o sistema regulador do corpo humano através de hormônios.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/kauaemerencio" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/kauã-lisboa-9951b62b5" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Glândulas</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://brasilescola.uol.com.br/biologia/hipotalamo.htm">Hipotálamo</a></li>
+                        <li><a href="https://brasilescola.uol.com.br/biologia/hipofise.htm">Hipófise</a></li>
+                        <li><a href="https://mundoeducacao.uol.com.br/doencas/tireoide.htm">Tireoide</a></li>
+                        <li><a href="https://www.todamateria.com.br/glandulas-suprarrenais/">Suprarrenais</a></li>
+                        <li><a href="https://brasilescola.uol.com.br/biologia/pancreas.htm">Pâncreas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Hormônios</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.tuasaude.com/hormonio-do-crescimento-gh/">Hormônio do Crescimento</a></li>
+                        <li><a href="https://www.tuasaude.com/insulina/">Insulina</a></li>
+                        <li><a href="https://mundoeducacao.uol.com.br/biologia/adrenalina.htm">Adrenalina</a></li>
+                        <li><a href="https://brasilescola.uol.com.br/biologia/tiroxina-triiodotironina.htm">Tiroxina</a></li>
+                        <li><a href="https://www.tuasaude.com/ocitocina/">Ocitocina</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">kaualisboa2018@gmail.com</a></li>
+                        <li><a href="#">+55 (79) 99810-7310</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sistema Endócrino Explorer. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+         
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Update active link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        so
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.gland-card, .hormone-item, .system-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        };
+        
+        // Initialize animations when page loads
+        window.addEventListener('load', animateOnScroll);
+        
+        // Quiz functionality
+        document.getElementById('submitQuiz').addEventListener('click', function() {
+            // Correct answers
+            const correctAnswers = {
+                q1: 'c',
+                q2: 'b',
+                q3: 'c',
+                q4: 'c',
+                q5: 'c'
+            };
+            
+            // User answers
+            const userAnswers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value,
+                q4: document.querySelector('input[name="q4"]:checked')?.value,
+                q5: document.querySelector('input[name="q5"]:checked')?.value
+            };
+            
+            // Check if all questions were answered
+            for (let key in userAnswers) {
+                if (!userAnswers[key]) {
+                    alert('Por favor, responda todas as perguntas antes de enviar!');
+                    return;
+                }
+            }
+            
+            // Calculate score
+            let score = 0;
+            const results = [];
+            
+            for (let key in correctAnswers) {
+                if (userAnswers[key] === correctAnswers[key]) {
+                    score++;
+                    results.push(`<span class="correct">✓ Resposta correta!</span>`);
+                } else {
+                    results.push(`<span class="incorrect">✗ Resposta incorreta. A correta é ${correctAnswers[key].toUpperCase()}</span>`);
+                }
+            }
+            
+            // Display results
+            document.getElementById('result1').innerHTML = `1. ${results[0]}`;
+            document.getElementById('result2').innerHTML = `2. ${results[1]}`;
+            document.getElementById('result3').innerHTML = `3. ${results[2]}`;
+            document.getElementById('result4').innerHTML = `4. ${results[3]}`;
+            document.getElementById('result5').innerHTML = `5. ${results[4]}`;
+            document.getElementById('quizScore').innerHTML = `Pontuação: ${score}/5`;
+            
+            // Show results
+            document.getElementById('quizResults').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('quizResults').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Set active nav link based on scroll position
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
